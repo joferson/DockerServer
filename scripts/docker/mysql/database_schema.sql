@@ -1,6 +1,6 @@
 CREATE DATABASE notes;
-CREATE USER 'notes-api@localhost' IDENTITY BY 'notes-api';
-GRANT ALL PRIVILEGES ON notes.* TO 'notes-api'@'localhost';
+GRANT ALL PRIVILEGES ON notes.* TO 'notes-api'@'%' IDENTIFIED BY 'notes-api';
+FLUSH PRIVILEGES;
 USE notes;
 CREATE TABLE `Note` (
 	  `Id` int(11) NOT NULL AUTO_INCREMENT,

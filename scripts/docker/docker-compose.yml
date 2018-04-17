@@ -1,28 +1,29 @@
-db:
+version: '2'
+services:
+  db:
     build: ./mysql
     image: mysql:5.6
     environment:
-      - MYSQL_ROOT_PASSWORD=mypasswordroot
+      - MYSQL_ROOT_PASSWORD=verysecret
     volumes:
       - /data/mysql:/var/lib/mysql
-
-nginx:
-  restart: always
-  build: ./nginx/
-  ports:
-    - "80:80"
-  volumes:
-    - /www/public
-  volumes_from:
-    - web
-  links:
-    - app:app
-
-app:
+  app:
     build: ./app
     environment:
       NODE_ENV: production
     ports:
       - '8888:8888'
     links:
-      - 'db:db'
+      - db 
+       
+  web:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /www/public
+    volumes_from:
+      - app
+    links:
+      - app

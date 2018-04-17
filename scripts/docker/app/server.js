@@ -8,8 +8,8 @@ if (!port) {
 }
 var connection = mysql.createConnection({
 	host: 'db',
-	user: 'notes-api',
-	password: 'notes-api'
+	user: 'root',
+	password: 'verysecret'
 });
 
 var server = restify.createServer();
@@ -17,7 +17,7 @@ var server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
 // get all notes
-server.get('/notes/:id', function (request, response, next) {
+server.get('/notes', function (request, response, next) {
 	connection.query('select * from notes.Note order by Id desc', function (error, results, fields) {
 		if (error) { next(error); return; }
 		response.end(JSON.stringify(results));
@@ -34,7 +34,7 @@ server.post('/notes', function (request, response, next) {
 });
 
 // delete note
-server.del('/notes/:id', function (request, response, next) {
+server.del('/notes', function (request, response, next) {
 	var id = request.params.id;
 	
 	if(!id || id <= 0) { return next(new errors.BadRequestError("id inválido")); }
