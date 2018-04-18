@@ -1,8 +1,3 @@
 FROM mysql:5.6
-
-RUN chown -R mysql:root /var/lib/mysql/
-ADD dump.sh dump.sh
-ADD database_schema.sql database_schema.sql
-#RUN ./dump.sd
-
+ADD database_schema.sql /docker-entrypoint-initdb.d/database_schema.sql
 CMD ["mysqld"]
