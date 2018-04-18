@@ -13,4 +13,4 @@ mkdir projeto &&\
 git clone https://github.com/joferson/DockerServer.git &&\
 cd DockerServer/scripts/docker &&\
 sudo docker-compose build &&\
-sudo docker-compose up &
+sudo docker-compose up 
