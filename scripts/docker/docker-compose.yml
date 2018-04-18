@@ -8,7 +8,7 @@ services:
       - MYSQL_ROOT_PASSWORD=verysecret
       - MYSQL_DATABASE=notes
       - MYSQL_USER=notes-api
-      - MYSQL_PASSWORD=notes-api
+      - MYSQL_PASSWORD=notesapi
 
     volumes:
       - /data/mysql:/var/lib/mysql
